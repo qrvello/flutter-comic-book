@@ -1,0 +1,120 @@
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:comic_vine_api_service/comic_vine_api_service.dart';
+import 'package:intl/intl.dart';
+
+part 'issue.freezed.dart';
+
+@freezed
+class Issue with _$Issue {
+  const Issue._();
+
+  factory Issue({
+    dynamic aliases,
+    String? apiDetailUrl,
+    List<AssociatedImage>? associatedImages,
+    List<CharacterCredit>? characterCredits,
+    List<dynamic>? characterDiedIn,
+    List<ConceptCredit>? conceptCredits,
+    String? coverDate,
+    DateTime? dateAdded,
+    DateTime? dateLastUpdated,
+    dynamic deck,
+    String? description,
+    dynamic firstAppearanceCharacters,
+    dynamic firstAppearanceConcepts,
+    dynamic firstAppearanceLocations,
+    dynamic firstAppearanceObjects,
+    dynamic firstAppearanceStoryarcs,
+    dynamic firstAppearanceTeams,
+    bool? hasStaffReview,
+    int? id,
+    Image? image,
+    String? issueNumber,
+    List<LocationCredit>? locationCredits,
+    String? name,
+    List<dynamic>? objectCredits,
+    List<PersonCredit>? personCredits,
+    String? siteDetailUrl,
+    dynamic storeDate,
+    List<dynamic>? storyArcCredits,
+    List<dynamic>? teamCredits,
+    List<dynamic>? teamDisbandedIn,
+    Volume? volume,
+  }) = _Issue;
+
+  factory Issue.fromDTO(IssueDTO dto) => Issue(
+        aliases: dto.results?.aliases,
+        apiDetailUrl: dto.results?.apiDetailUrl,
+        associatedImages: dto.results?.associatedImages,
+        characterCredits: dto.results?.characterCredits,
+        characterDiedIn: dto.results?.characterDiedIn,
+        conceptCredits: dto.results?.conceptCredits,
+        coverDate: dto.results?.coverDate,
+        dateAdded: DateFormat("yyyy-MM-dd hh:mm:ss").parse(
+          dto.results!.dateAdded!,
+        ),
+        dateLastUpdated: DateFormat("yyyy-MM-dd hh:mm:ss").parse(
+          dto.results!.dateLastUpdated!,
+        ),
+        deck: dto.results?.deck,
+        description: dto.results?.description,
+        firstAppearanceCharacters: dto.results?.firstAppearanceCharacters,
+        firstAppearanceConcepts: dto.results?.firstAppearanceConcepts,
+        firstAppearanceLocations: dto.results?.firstAppearanceLocations,
+        firstAppearanceObjects: dto.results?.firstAppearanceObjects,
+        firstAppearanceStoryarcs: dto.results?.firstAppearanceStoryarcs,
+        firstAppearanceTeams: dto.results?.firstAppearanceTeams,
+        hasStaffReview: dto.results?.hasStaffReview,
+        id: dto.results?.id,
+        image: dto.results?.image,
+        issueNumber: dto.results?.issueNumber,
+        locationCredits: dto.results?.locationCredits,
+        name: dto.results?.name,
+        objectCredits: dto.results?.objectCredits,
+        personCredits: dto.results?.personCredits,
+        siteDetailUrl: dto.results?.siteDetailUrl,
+        storeDate: dto.results?.storeDate,
+        storyArcCredits: dto.results?.storyArcCredits,
+        teamCredits: dto.results?.teamCredits,
+        teamDisbandedIn: dto.results?.teamDisbandedIn,
+        volume: dto.results?.volume,
+      );
+
+  factory Issue.fromResults(Results results) => Issue(
+        aliases: results.aliases,
+        apiDetailUrl: results.apiDetailUrl,
+        associatedImages: results.associatedImages,
+        characterCredits: results.characterCredits,
+        characterDiedIn: results.characterDiedIn,
+        conceptCredits: results.conceptCredits,
+        coverDate: results.coverDate,
+        dateAdded: DateFormat("yyyy-MM-dd hh:mm:ss").parse(
+          results.dateAdded!,
+        ),
+        dateLastUpdated: DateFormat("yyyy-MM-dd hh:mm:ss").parse(
+          results.dateLastUpdated!,
+        ),
+        deck: results.deck,
+        description: results.description,
+        firstAppearanceCharacters: results.firstAppearanceCharacters,
+        firstAppearanceConcepts: results.firstAppearanceConcepts,
+        firstAppearanceLocations: results.firstAppearanceLocations,
+        firstAppearanceObjects: results.firstAppearanceObjects,
+        firstAppearanceStoryarcs: results.firstAppearanceStoryarcs,
+        firstAppearanceTeams: results.firstAppearanceTeams,
+        hasStaffReview: results.hasStaffReview,
+        id: results.id,
+        image: results.image,
+        issueNumber: results.issueNumber,
+        locationCredits: results.locationCredits,
+        name: results.name,
+        objectCredits: results.objectCredits,
+        personCredits: results.personCredits,
+        siteDetailUrl: results.siteDetailUrl,
+        storeDate: results.storeDate,
+        storyArcCredits: results.storyArcCredits,
+        teamCredits: results.teamCredits,
+        teamDisbandedIn: results.teamDisbandedIn,
+        volume: results.volume,
+      );
+}

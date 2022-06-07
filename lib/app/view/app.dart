@@ -1,26 +1,35 @@
-import 'package:comic_book/counter/counter.dart';
-import 'package:comic_book/l10n/l10n.dart';
+import 'package:comic_book/issues/view/issues_list_page.dart';
+import 'package:comic_vine_api_repository/comic_vine_api_repository.dart';
+import 'package:comic_vine_api_service/comic_vine_api_service.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:http_provider/http_provider.dart';
 
 class App extends StatelessWidget {
   const App({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(
-        appBarTheme: const AppBarTheme(color: Color(0xFF13B9FF)),
-        colorScheme: ColorScheme.fromSwatch(
-          accentColor: const Color(0xFF13B9FF),
+    return MultiRepositoryProvider(
+      providers: [
+        RepositoryProvider<IHttpProvider>(
+          create: (context) => HttpProvider(),
         ),
-      ),
-      localizationsDelegates: const [
-        AppLocalizations.delegate,
-        GlobalMaterialLocalizations.delegate,
+        RepositoryProvider<IComicVineApiService>(
+          create: (context) => ComicVineApiService(
+            RepositoryProvider.of<IHttpProvider>(context),
+          ),
+        ),
+        RepositoryProvider<IComicVineApiRepository>(
+          create: (context) => ComicVineApiRepository(
+            RepositoryProvider.of<IComicVineApiService>(context),
+          ),
+        ),
       ],
-      supportedLocales: AppLocalizations.supportedLocales,
-      home: const CounterPage(),
+      child: const MaterialApp(
+        debugShowCheckedModeBanner: false,
+        home: IssuesListPage(),
+      ),
     );
   }
 }
